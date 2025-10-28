@@ -10,7 +10,7 @@ def parse_properties(datasets, encoding_models, h_names, target='vnnlib', path='
                     h_name = ['perturbations']
                 h_name = h_name[0]
                 
-                hyperrectangles = load_hyperrectangles(dataset, encoding_name, h_name, load_saved_hyperrectangles=True)
+                hyperrectangles = load_hyperrectangles(dataset, encoding_name, h_name, load_saved_hyperrectangles=True, cosine_threshold=0.6)
                 print(f'{dataset} -|- {encoding_name} -|-  -|- {hyperrectangles.shape} -|- {h_name}')
                 
                 properties_directory = f'{path}/{dataset}/properties/{target}/{encoding_name}/{h_name}'

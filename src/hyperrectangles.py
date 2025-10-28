@@ -84,7 +84,7 @@ def print_hyperrectangles_statistics(hyperrectangles, X_train_pos, X_test_pos, X
     return train_pos_percentage, test_pos_percentage, train_neg_percentage, test_neg_percentage, train_pos_n, test_pos_n, train_neg_n, test_neg_n
 
 
-def load_hyperrectangles(dataset_name, encoding_model_name, hyperrectangles_name, load_saved_hyperrectangles, eps=0.05, path='datasets'):
+def load_hyperrectangles(dataset_name, encoding_model_name, hyperrectangles_name, load_saved_hyperrectangles, eps=0.05, cosine_threshold=0.6, path='datasets'):
     if load_saved_hyperrectangles:
         # hyperrectangles = []
         # for h_n in hyperrectangles_name:
@@ -124,7 +124,7 @@ def load_hyperrectangles(dataset_name, encoding_model_name, hyperrectangles_name
                 for index, value in enumerate(train_pos_index):
                     if value == i:
                         cosine_score = util.cos_sim(X_train_pos_embedded_o[i], X_train_pos_p_embedded[index])
-                        if cosine_score > 0.6:
+                        if cosine_score > cosine_threshold:
                             points.append(X_train_pos_p[index])
                 if len(points) >= 2:
                     hyperrectangle = calculate_hyperrectangle(np.array(points))

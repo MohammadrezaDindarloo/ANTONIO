@@ -138,3 +138,6 @@ dmypy.json
 # Project
 *.zip
 .DS_Store
+/datasets
+/runs
+/result

@@ -445,7 +445,7 @@ def calculate_number_of_sentences_inside_the_verified_hyperrectangles(datasets, 
                     print(f'{dataset} {encoding_name} {model} {h}')
 
                     indices = np.load(f'verification/marabou/indices/{dataset}_{encoding_name}_{model}_{h}.npy')
-                    hyperrectangles = load_hyperrectangles(dataset, encoding_name, h_name, load_saved_hyperrectangles=True)
+                    hyperrectangles = load_hyperrectangles(dataset, encoding_name, h_name, load_saved_hyperrectangles=True, cosine_threshold=0.6)
                     hyperrectangles = np.take(hyperrectangles, indices, axis=0)
                     
                     train_pos_percentage, test_pos_percentage, train_neg_percentage, test_neg_percentage, train_pos_n, test_pos_n, train_neg_n, test_neg_n = print_hyperrectangles_statistics(hyperrectangles, X_train_pos_embedded, X_train_neg_embedded, X_test_pos_embedded, X_test_neg_embedded)

@@ -7,8 +7,11 @@ from results import calculate_accuracy, calculate_perturbations_accuracy, calcul
 from tensorflow import keras
 import os
 import nltk
-nltk.download('punkt')
-
+for pkg in ("punkt", "punkt_tab"):
+    try:
+        nltk.data.find(f"tokenizers/{pkg}")
+    except LookupError:
+        nltk.download(pkg, quiet=True)
 
 def get_model(n_components):
     inputs = keras.Input(shape=(n_components,), name="embeddings")
@@ -61,7 +64,7 @@ if __name__ == '__main__':
     train_dataset, test_dataset = prepare_data_for_training(X_train_pos, X_train_neg, X_test_pos, X_test_neg, y_train_pos_o, y_train_neg_o, y_test_pos_o, y_test_neg_o, batch_size)
 
     # Create the hyper-rectangles
-    hyperrectangles = load_hyperrectangles(dataset_name, encoding_model_name, hyperrectangles_name, load_saved_hyperrectangles, path=path)
+    hyperrectangles = load_hyperrectangles(dataset_name, encoding_model_name, hyperrectangles_name, load_saved_hyperrectangles, cosine_threshold=0.6, path=path)
 
     # Train and save the base and adversarial models
     model_path = f'{path}/{dataset_name}/models/tf/{encoding_model_name}'

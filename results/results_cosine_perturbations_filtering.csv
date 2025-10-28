@@ -1,0 +1,2 @@
+Dataset,Encoding Model,Perturbation,Positive,Negative
+ruarobot,sbert22M,character,254/14450 (1.76\%),2/14450 (0.01\%)
